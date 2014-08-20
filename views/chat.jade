@@ -1,0 +1,35 @@
+doctype 5
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/socket.io/socket.io.js')
+    script(src='http://code.jquery.com/jquery-1.8.3.min.js')
+    script(src='chat_module.js')
+  body
+    h1= title
+    div
+    h3 회차 출석고사
+    table
+        th 지역
+        th 급지
+        th 팀TO
+        th 고사시간
+        each item in documents
+          tr  
+              td= item.area
+              td= item.grade
+              td= item.area_to
+              td= item.exam_date
+    div#wrapper
+        div#messages
+        div.nic
+            input#name(name='name', type='text')
+        div
+        textarea#message
+        br
+        input#send(type='submit', value='Send')
+    script
+        $(document).ready(function() {
+            Chat.initialize('/chat');
+        });
